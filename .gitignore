@@ -1,3 +1,6 @@
+# Use this file to avoid adding temp or system specific files to git repo
+
+# This stuff is from the github gitignore repo @ https://github.com/github/gitignore
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -5,4 +8,21 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+# C# Assembly References
+*.csproj
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+
+# Unity3D Generated File On Crash Reports
+sysinfo.txt
+
+# Builds
+*.apk
+*.unitypackage
+
+
+# Added by Matt
 /Project_Anvil/.vscode/
+
