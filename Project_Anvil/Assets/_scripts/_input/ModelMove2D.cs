@@ -49,7 +49,6 @@ public class ModelMove2D : MonoBehaviour {
 	public void MoveToPoint(Vector3 point){
 		Debug.Log("the point is " + point);
 		targetPoint = point;
-		//targetPoint.y += 2;
 		move = true;
 	}
 }
