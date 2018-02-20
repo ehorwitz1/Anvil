@@ -22,9 +22,9 @@ public class InputController2D : MonoBehaviour {
 		if (Input.GetMouseButtonUp(0)){
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			//	Debug.DrawRay(Camera.main.ScreenPointToRay(Input.mousePosition), Color.red, 0.5f);
 			if (Physics.Raycast(ray, out hit)){ // get the object using a raycast
-				if (hit.transform.name == "Ground"){ // if statement to move object, assuming it is selected
+				if (hit.transform.name == "MapHitDetector"){ // if statement to move object, assuming it is selected
+                    Debug.Log("2d input hit map");
 					float hitDist;
 					if (myPlane.Raycast(ray, out hitDist)){
 						targetPoint = ray.GetPoint(hitDist);

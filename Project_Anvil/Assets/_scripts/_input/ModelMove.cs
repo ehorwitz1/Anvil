@@ -29,7 +29,6 @@ public class ModelMove : MonoBehaviour {
 	}
 
 	public void OnSelect(Transform theTarget, string selectedName){
-		Debug.Log("okay");
 		if(!isSelected){
 	    	hoverText = Instantiate(textPrefab, new Vector3 (theTarget.position.x + 2,
 															 theTarget.position.y,
@@ -46,7 +45,7 @@ public class ModelMove : MonoBehaviour {
     public void MoveToPoint(Vector3 point){
     	Debug.Log("the point is " + point);
     	targetPoint = point;
-    	//targetPoint.y += 2;
+        targetPoint.y = 1.53f;
     	move = true;
 	}
 }
