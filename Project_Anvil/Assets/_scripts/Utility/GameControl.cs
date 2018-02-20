@@ -18,8 +18,8 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void OnGUI()
+	{
+		//OnGUI.Label(Put Lat long Data Here)
 	}
 }
