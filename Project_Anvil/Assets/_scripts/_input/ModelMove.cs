@@ -22,6 +22,7 @@ public class ModelMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (move) {
+			targetPoint.y = transform.position.y;
 			transform.position = Vector3.Lerp (transform.position, targetPoint, Time.deltaTime * 2.0f); 
 		}
 
