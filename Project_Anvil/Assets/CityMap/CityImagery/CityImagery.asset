@@ -18,6 +18,6 @@ MonoBehaviour:
     Modified: 
     UserName: mzrieker
   _mapId: mapbox://styles/mzrieker/cjd5fbh3r49ih2rmsn68mshxc
-  _useCompression: 1
+  _useCompression: 0
   _useMipMap: 0
   _useRetina: 0
