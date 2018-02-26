@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // only works with one model for now
+// model must have tag of "Model" for it to respond to the raycasts
 
 public class InputController2D : MonoBehaviour {
 
@@ -24,7 +25,6 @@ public class InputController2D : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(ray, out hit)){ // get the object using a raycast
 				if (hit.transform.name == "MapHitDetector"){ // if statement to move object, assuming it is selected
-                    Debug.Log("2d input hit map");
 					float hitDist;
 					if (myPlane.Raycast(ray, out hitDist)){
 						targetPoint = ray.GetPoint(hitDist);
@@ -33,7 +33,7 @@ public class InputController2D : MonoBehaviour {
 							ModelMove2D.MoveToPoint(targetPoint);
 						}
 					}
-				} else if (hit.transform.tag == "Model"){ // if statement to select model objects
+				} else if (hit.transform.tag == "Model" || hit.transform.tag == "ModelAir"){ // if statement to select model objects
 					ModelMove2D = hit.transform.gameObject.GetComponent<ModelMove2D>();
 					if(!isSelected){
 						isSelected = true;
