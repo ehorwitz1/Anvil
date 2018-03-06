@@ -21,6 +21,6 @@ public class UIClock : MonoBehaviour
     }
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 300, 20), "Date/Time: " + timeText);
+        GUI.Label(new Rect(Screen.width - 300, 10, 300, 20), "Date/Time: " + timeText);
     }
 }
