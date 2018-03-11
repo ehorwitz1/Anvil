@@ -7,13 +7,14 @@ using UnityEngine;
 
 public class InputController2D : MonoBehaviour
 {
-
+    bool showRoutes = false;
     bool isSelected = false;
     bool displayCheckpointList = false;
     bool displayRouteList = false;
     Plane myPlane;
     Vector3 targetPoint;
     public ModelMove2D ModelMove2D;
+    public RouteDisplay routeDisplay;
     public CameraZoom cameraZoom;
     int i = 0;
 
@@ -23,6 +24,8 @@ public class InputController2D : MonoBehaviour
     {
         myPlane = new Plane(Vector3.up, transform.position);
         cameraZoom = Camera.main.gameObject.GetComponent<CameraZoom>();
+        routeDisplay = GameObject.Find("UIRoute").GetComponent<RouteDisplay>();
+
     }
 
     // Update is called once per frame
@@ -87,7 +90,22 @@ public class InputController2D : MonoBehaviour
             }
             if (GUI.Button(new Rect(10, 300, 200, 50), "display routes"))
             {
-                // TODO: display routes for selected unit. 
+                // TODO: Get route from selected unit. hopefully a list of Vector3 points
+                // for now just use dummy values
+
+                if (showRoutes == false)
+                {
+                    List<Vector3> dummyList = new List<Vector3>();
+                    dummyList.Add(new Vector3(5, 4, 3));
+                    dummyList.Add(new Vector3(15, 4, 13));
+                    dummyList.Add(new Vector3(12, 4, 1));
+                    routeDisplay.Show(dummyList);
+                    showRoutes = true;
+                } else
+                {
+                    routeDisplay.Hide();
+                    showRoutes = false;
+                }
             }
             if (GUI.Button(new Rect(10, Screen.height - 50, 100, 50), "ZOOM IN"))
             {
