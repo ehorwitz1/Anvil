@@ -15,3 +15,5 @@ MonoBehaviour:
   _types:
   - _typeString: ApplyMeshCombinerToParent
     _script: {fileID: 11500000, guid: a1245b203fe19ae47836d03f2973611b, type: 3}
+  - _typeString: AttachNavMeshSourceTag
+    _script: {fileID: 11500000, guid: 0918022ce8943874f967b06522b67f91, type: 3}
