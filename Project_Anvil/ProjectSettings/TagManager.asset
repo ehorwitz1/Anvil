@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Model
   - ModelAir
+  - NavMeshBuilder
+  - MeshCombiner
+  - CombinedMeshContainer
   layers:
   - Default
   - TransparentFX
