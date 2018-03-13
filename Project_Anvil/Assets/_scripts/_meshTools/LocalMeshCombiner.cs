@@ -21,16 +21,16 @@ public class LocalMeshCombiner : MonoBehaviour {
 			Debug.Log("Transform: " + meshes[i].transform );
 
 		}
-		// TODO: assign all combined meshes as childen of a container gameobject
+
 		GameObject combinedMeshHolder = GameObject.FindGameObjectWithTag("CombinedMeshContainer");
-		GameObject test = new GameObject();
-		test.name = "CombinedMesh ( " + tile.name + " )";
-		test.AddComponent<MeshRenderer>();
-		test.GetComponent<MeshRenderer>().enabled = false;
-		test.AddComponent<MeshFilter>();
-		test.GetComponent<MeshFilter>().mesh.CombineMeshes( meshes, true );
-		test.transform.parent = combinedMeshHolder.transform;
-		//test.AddComponent<NavMeshSourceTag>();
+		GameObject co = new GameObject();
+		co.name = "CombinedMesh ( " + tile.name + " )";
+		co.AddComponent<MeshRenderer>();
+		co.GetComponent<MeshRenderer>().enabled = false;
+		co.AddComponent<MeshFilter>();
+		co.GetComponent<MeshFilter>().mesh.CombineMeshes( meshes, true );
+		co.transform.parent = combinedMeshHolder.transform;
+		co.AddComponent<NavMeshSourceTag>();
 
 	}
 
