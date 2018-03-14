@@ -22,16 +22,22 @@ public class LocalNavMeshBuilder : MonoBehaviour
     NavMeshDataInstance m_Instance;
     List<NavMeshBuildSource> m_Sources = new List<NavMeshBuildSource>();
 
+    GameObject map;
+    float tileSize;
+
     IEnumerator Start()
     {   
         // TODO: THIS
-        // Add tag for nav
-        // Add method getTileCounts to the rangetileprovider
         // Calculate bounds from # of tiles and tile size
-        // RangeTileProvider rtp = GameObject.FindGameObjectWithTag("Nav").GetComponent<RangeTileProvider>();
-        // West, North, East, South
-        //Vector4 tileCount = rtp.getTileCounts();
-        // float tileSize = GameObject.FindGameObjectWithTag("Nav").GetComponent<BasicMap>().UnityTileSize;
+        map = GameObject.Find("Map");
+        AccessableRangeTileProvider rtp = map.GetComponent<AccessableRangeTileProvider>();
+        // return is West, North, East, South
+        Vector4 tileCount = rtp.getTileCounts();
+        tileSize = map.GetComponent<BasicMap>().UnityTileSize;
+        float x = tileSize * ( 1 + tileCount[0] + tileCount[2] );
+        float z = tileSize * ( 1 + tileCount[1] + tileCount[3] );
+        
+        m_Size = new Vector3( x, 20, z );
 
 
         while (true)
