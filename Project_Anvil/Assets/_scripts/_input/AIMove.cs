@@ -22,7 +22,6 @@ public class AIMove : MonoBehaviour
     }
 
 
-    // route mode lets user create a route, off executes the route
     void Update(){
         // Mode: Route
         if( inputMode == Mode.route ){
