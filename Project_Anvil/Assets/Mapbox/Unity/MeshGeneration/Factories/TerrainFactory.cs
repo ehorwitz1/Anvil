@@ -224,6 +224,7 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 
 				tile.SetHeightData(pngRasterTile.Data, _heightModifier, _useRelativeHeight);
 				GenerateTerrainMesh(tile);
+				tile.gameObject.AddComponent<NavMeshSourceTag>();
 				Progress--;
 			});
 		}
