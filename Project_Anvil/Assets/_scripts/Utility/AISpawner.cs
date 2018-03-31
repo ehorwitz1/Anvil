@@ -5,7 +5,7 @@ using UnityEngine;
 public class AISpawner : MonoBehaviour {
 
     ObjectPooler objectPooler;
-
+    public GameObject spawningParent;
     public float x = 50; // x size or the area to spawn the units
     public float z = 50; // z size of the area to spawn the units
     float offset;
@@ -15,24 +15,21 @@ public class AISpawner : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        spawningParent = GameObject.Find("Faction2");
         objectPooler = ObjectPooler.Instance;
         offset = x / 2;
         BeginPlacing();
-	}
+      
+
+    }
 	
-	// Update is called once per frame
-	void FixedUpdate () {
-
-
-	}
-
     // BeginPlacing //
     // loops through spawning the units in a randomly generated location
     void BeginPlacing()
     {
         for(int j = 0; j < count; j++)
         {
-            objectPooler.SpawnFromPool("AIUnit", PlaceStuffRandomly(), Quaternion.identity);
+            objectPooler.SpawnFromPool("AIUnit", PlaceStuffRandomly(), Quaternion.identity, spawningParent);
         }
     }
 
@@ -61,7 +58,7 @@ public class AISpawner : MonoBehaviour {
             newPos.z = newPos.z - offset;
             newPos.y = newPos.y + 1;
             positions.Add(newPos);
-            Debug.Log(newPos);
+           // Debug.Log(newPos);
             return newPos;
         }
         return new Vector3(0, 0, 0);

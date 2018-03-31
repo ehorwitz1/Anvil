@@ -22,16 +22,16 @@ public class SplitScreen : MonoBehaviour {
 		
 	}
 
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 150, 50), "Camera View"))
-        {
-            ChangeViewMode();
-        }
-    }
+    //void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(10, 10, 150, 50), "Camera View"))
+    //    {
+    //        ChangeViewMode();
+    //    }
+    //}
     // ChangeViewMode //
     // cycles between 2d, 3d and split screen camera modes
-    void ChangeViewMode()
+    public void ChangeViewMode()
     {
         if(mode == 0)
         {

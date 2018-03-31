@@ -55,7 +55,7 @@ public class ObjectPooler : MonoBehaviour {
     // SpawnFromPool //
     // gets an object from the pool and dequeues it for activating and moving to position needed, then returns it to the
     // object pool for future use if needed
-    public GameObject SpawnFromPool(string _tag, Vector3 _position, Quaternion _rot)
+    public GameObject SpawnFromPool(string _tag, Vector3 _position, Quaternion _rot, GameObject parent)
     {
         
         if (!poolDictionary.ContainsKey(_tag))
@@ -65,10 +65,11 @@ public class ObjectPooler : MonoBehaviour {
         }
 
         GameObject objectToSpawn  = poolDictionary[_tag].Dequeue();
-
+        GameObject parentHolder = parent;
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = _position;
         objectToSpawn.transform.rotation = _rot;
+        objectToSpawn.transform.parent = parent.transform;
 
         poolDictionary[_tag].Enqueue(objectToSpawn);
 

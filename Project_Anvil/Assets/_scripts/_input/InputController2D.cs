@@ -107,14 +107,14 @@ public class InputController2D : MonoBehaviour
                     showRoutes = false;
                 }
             }
-            if (GUI.Button(new Rect(10, Screen.height - 50, 100, 50), "ZOOM IN"))
-            {
-                cameraZoom.ZoomIn();
-            }
-            if (GUI.Button(new Rect(115, Screen.height - 50, 100, 50), "ZOOM OUT"))
-            {
-                cameraZoom.ZoomOut();
-            }
+            //if (GUI.Button(new Rect(10, Screen.height - 50, 100, 50), "ZOOM IN"))
+            //{
+            //    cameraZoom.ZoomIn();
+            //}
+            //if (GUI.Button(new Rect(115, Screen.height - 50, 100, 50), "ZOOM OUT"))
+            //{
+            //    cameraZoom.ZoomOut();
+            //}
 
         }
         if (displayCheckpointList)

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIClock : MonoBehaviour
 {
 
-    public string timeText;
+    public Text timeText;
 
     // Use this for initialization
     void Start()
@@ -17,10 +18,10 @@ public class UIClock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeText = DateTime.Now.ToString();
+        timeText.text = DateTime.UtcNow.ToString("yyyy-MM-ddT") + "\n" + DateTime.UtcNow.ToString("HH:mm:ss") + "/Z";
     }
-    void OnGUI()
-    {
-        GUI.Label(new Rect(Screen.width - 300, 10, 300, 20), "Date/Time: " + timeText);
-    }
+    //void OnGUI()
+    //{
+    //    GUI.Label(new Rect(Screen.width - 300, 10, 300, 20), "Date/Time: " + timeText);
+    //}
 }

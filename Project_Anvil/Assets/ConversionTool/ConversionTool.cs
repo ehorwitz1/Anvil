@@ -40,8 +40,7 @@ public class ConversionTool : MonoBehaviour {
 
 		LatLng latLng = new LatLng(InitRef2D.x, InitRef2D.y);
 		LatLongString = latLng.ToString();
-
-
+        
 		MGRSRef mgrsRef = latLng.ToMGRSRef();
 		MGRS_Coordinates = mgrsRef.ToString();
 
@@ -56,5 +55,31 @@ public class ConversionTool : MonoBehaviour {
 		CurrentPos.text = "Lat / Long: " + LatLongString + "\n" + "UTM: " + UTM_Coordinates + "\n" + "MGRS: " + MGRS_Coordinates;
 
 	}
-		
+
+    public static Vector3 LatLongToUnityVector3D(LatLng mlatlong)
+    {
+        double latitude = mlatlong.Latitude;
+        double longitude = mlatlong.Longitude;
+        float height = 6378137 + (float)mlatlong.Height; ;
+        Vector2d outputV2 = new Vector2d(latitude, longitude);
+        Vector3 outputV3 = Conversions.GeoToWorldGlobePosition(outputV2, height);
+        return outputV3;
+
+
+    }
+	
+    public static LatLng LatLongFromUnityVector3D(Vector3 aPosition)
+    {
+        Vector3 unityCoords = aPosition;
+        Vector2d convertPos2D;
+            convertPos2D.x = unityCoords.x;
+        convertPos2D.y = unityCoords.z;
+        BasicMap aMap = BasicMap.FindObjectOfType<BasicMap>();
+        convertPos2D = aMap.CenterMercator + (convertPos2D * aMap.WorldRelativeScale);
+        Vector2d Ref2d;
+        Ref2d = Mapbox.Unity.Utilities.Conversions.MetersToLatLon(convertPos2D);
+
+        LatLng outputlatLng = new LatLng(Ref2d.x, Ref2d.y);
+        return outputlatLng;
+    }
 }
