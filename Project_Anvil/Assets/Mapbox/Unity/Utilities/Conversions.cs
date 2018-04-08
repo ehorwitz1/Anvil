@@ -22,7 +22,7 @@ namespace Mapbox.Unity.Utilities
 		private const int EarthRadius = 6378137; //no seams with globe example
 		private const double InitialResolution = 2 * Math.PI * EarthRadius / TileSize;
 		private const double OriginShift = 2 * Math.PI * EarthRadius / 2;
-
+       
 		/// <summary>
 		/// Converts <see cref="T:Mapbox.Utils.Vector2d"/> struct, WGS84
 		/// lat/lon to Spherical Mercator EPSG:900913 xy meters.

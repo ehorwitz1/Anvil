@@ -60,42 +60,67 @@ public class UserControlScript : MonoBehaviour {
         allFactionRoutes = blackBoard.GetComponent<BlackBoardScript>().allGameRoutes;
         allFactionAgents = blackBoard.GetComponent<BlackBoardScript>().allGameAgents;
 
+
         UpdateAgentUIInfo();
         UpdateRouteUIInfo();
         UpdateWayPointUIInfo();
-
-        selectedRoute = allFactionRoutes[routeIndex];
+        if (allFactionRoutes != null)
+        {
+            selectedRoute = allFactionRoutes[routeIndex];
+            routeListCount = allFactionRoutes.Count;
+        }
         agentCount = allFactionAgents.Count;
-        routeListCount = allFactionRoutes.Count;
+        
     }
 
     private void UpdateAgentUIInfo()
     {
         selectedAgent = allFactionAgents[agentIndex];
-        activeAgentLabel.text = selectedAgent.mAgentName;
-        activeAgentPosLabel.text = selectedAgent.mLocation.ToString();
-        //activeAgentPosLabel.text = selectedAgent.mLocation.ToString() + "*\n +" +
-        //  ConversionTool.LatLongToUnityVector3D(selectedAgent.mLocation);
-        if (selectedAgent.mNavTarget.mWayPointName == null)
+        if (selectedAgent != null)
         {
-            activeAgentDataLabel.text = "- no waypoint set";
-        }
-        else {
-            activeAgentDataLabel.text = selectedAgent.mNavTarget.mWayPointName; }
+            activeAgentLabel.text = selectedAgent.mAgentName;
+            if (selectedAgent.mLocation != null)
+            {
+                activeAgentPosLabel.text = selectedAgent.mLocation.ToString();
+            }
 
+            //activeAgentPosLabel.text = selectedAgent.mLocation.ToString() + "*\n +" +
+            //  ConversionTool.LatLongToUnityVector3D(selectedAgent.mLocation);
+
+            if (selectedAgent.mNavTarget != null)
+            {
+                if (selectedAgent.mNavTarget.mWayPointName == null)
+                {
+                    activeAgentDataLabel.text = "- no waypoint set";
+                }
+                else
+                {
+                    activeAgentDataLabel.text = selectedAgent.mNavTarget.mWayPointName;
+                }
+            }
+        }
     }
 
     public void UpdateRouteUIInfo()
     {
-        selectedRoute = allFactionRoutes[routeIndex];
-        activeRouteLabel.text = selectedRoute.mRouteName +"["+ (routeIndex+1) + "/"+ allFactionRoutes.Count+"]";
+        if (allFactionRoutes != null)
+        {
+            selectedRoute = allFactionRoutes[routeIndex];
+            if (selectedRoute != null)
+            {
+                activeRouteLabel.text = selectedRoute.mRouteName + "[" + (routeIndex + 1) + "/" + allFactionRoutes.Count + "]";
+            }
+        }
     }
 
     public void UpdateWayPointUIInfo()
     {
-        activeWayPoint = selectedRoute.routeWayPoints[wayPointIndex];
-        activeWayPointLabel.text = "[" + (wayPointIndex + 1) + "/" + selectedRoute.routeWayPoints.Count + "]"+ activeWayPoint.mWayPointName;
-        activeWayPointPositionLabel.text = activeWayPoint.LatLonString();
+        if (selectedRoute != null)
+        {
+            activeWayPoint = selectedRoute.routeWayPoints[wayPointIndex];
+            activeWayPointLabel.text = "[" + (wayPointIndex + 1) + "/" + selectedRoute.routeWayPoints.Count + "]" + activeWayPoint.mWayPointName;
+            activeWayPointPositionLabel.text = activeWayPoint.LatLonString();
+        }
     }
 
     // Update is called once per frame

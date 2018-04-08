@@ -63,6 +63,7 @@ public class ConversionTool : MonoBehaviour {
         float height = 6378137 + (float)mlatlong.Height; ;
         Vector2d outputV2 = new Vector2d(latitude, longitude);
         Vector3 outputV3 = Conversions.GeoToWorldGlobePosition(outputV2, height);
+      
         return outputV3;
 
 
@@ -74,6 +75,8 @@ public class ConversionTool : MonoBehaviour {
         Vector2d convertPos2D;
             convertPos2D.x = unityCoords.x;
         convertPos2D.y = unityCoords.z;
+        //
+        //MapAtWorldScale aMap = MapAtWorldScale.FindObjectOfType<MapAtWorldScale>();
         BasicMap aMap = BasicMap.FindObjectOfType<BasicMap>();
         convertPos2D = aMap.CenterMercator + (convertPos2D * aMap.WorldRelativeScale);
         Vector2d Ref2d;
@@ -82,4 +85,5 @@ public class ConversionTool : MonoBehaviour {
         LatLng outputlatLng = new LatLng(Ref2d.x, Ref2d.y);
         return outputlatLng;
     }
+
 }

@@ -28,7 +28,7 @@ public class AnvilAgent : MonoBehaviour {
         mAgentSerial = agentSerial;
         mLocation = ConversionTool.LatLongFromUnityVector3D(transform.position);
         mFaction = faction;
-        locString = mLocation.ToMGRSRef().ToString();
+        locString = mLocation.ToString();
     }
     private void Start()
     {
@@ -53,6 +53,7 @@ public class AnvilAgent : MonoBehaviour {
     }
     public LatLng getLatLong()
     {
+
         return mLocation = ConversionTool.LatLongFromUnityVector3D(transform.position);
     }
     public string getMGRSString()

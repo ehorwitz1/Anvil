@@ -32,7 +32,10 @@ public class UIFloatingElements : MonoBehaviour {
     private void OnGUI()
     {
         //TODO build precheck code to verify active agent not null
-        DrawAgentCursor();
+        if (activeAgent != null)
+        {
+            DrawAgentCursor();
+        }
     }
 
     private void DrawAgentCursor()
