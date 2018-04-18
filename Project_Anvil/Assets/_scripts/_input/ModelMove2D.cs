@@ -19,13 +19,14 @@ public class ModelMove2D : MonoBehaviour {
 	public UIAirUnitDisplay uiAirUnitDisplay;
 
 	// Variables for a more complex movement involving acceleration
-	private double currentSpeed = 0;
-	public double maxSpeed;
-	public double acceleration;
+	private float playerVelocity = 0f;
+	public float maxSpeed;
+	public float acceleration;
+	private float step = 0f;
 
 
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
 		offset = Vector3.up;
 		textPrefab = Resources.Load("PrefabText") as GameObject;
         if (gameObject.tag == "ModelAir")
@@ -37,15 +38,22 @@ public class ModelMove2D : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (isSelected & move) {
+		if (isSelected & move & (transform.position != targetPoint)) {
 			//transform.position = Vector3.Lerp (transform.position, targetPoint, Time.deltaTime * 2.0f); 
-			while(currentSpeed < maxSpeed)
-			{
-				currentSpeed = maxSpeed + acceleration * Time.deltaTime;
-			}
-			transform.position = transform.position + 
-		} 
 
+			playerVelocity += acceleration;
+			if (playerVelocity >= maxSpeed)
+			{
+				playerVelocity = maxSpeed;
+			}
+		    step = playerVelocity * Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, targetPoint, step);
+		} 
+		else if(transform.position == targetPoint)
+		{
+			playerVelocity = 0f;
+			step = 0f;
+		}
 		else {
 			targetPoint = transform.position;
 		}
