@@ -16,7 +16,12 @@ public class ModelMove2D : MonoBehaviour {
     public bool isAirUnit = false;
 	Vector3 targetPoint;
     float speed = 7.0f;
-    public UIAirUnitDisplay uiAirUnitDisplay;
+	public UIAirUnitDisplay uiAirUnitDisplay;
+
+	// Variables for a more complex movement involving acceleration
+	private double currentSpeed = 0;
+	public double maxSpeed;
+	public double acceleration;
 
 
     // Use this for initialization
@@ -33,7 +38,12 @@ public class ModelMove2D : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isSelected & move) {
-			transform.position = Vector3.Lerp (transform.position, targetPoint, Time.deltaTime * 2.0f); 
+			//transform.position = Vector3.Lerp (transform.position, targetPoint, Time.deltaTime * 2.0f); 
+			while(currentSpeed < maxSpeed)
+			{
+				currentSpeed = maxSpeed + acceleration * Time.deltaTime;
+			}
+			transform.position = transform.position + 
 		} 
 
 		else {
