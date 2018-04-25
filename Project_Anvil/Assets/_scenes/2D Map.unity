@@ -1342,8 +1342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAirUnit: 0
   uiAirUnitDisplay: {fileID: 0}
-  maxSpeed: 0
-  acceleration: 0
+  maxSpeed: 20
+  acceleration: 0.1
 --- !u!1 &621964173
 GameObject:
   m_ObjectHideFlags: 0
@@ -3377,8 +3377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAirUnit: 0
   uiAirUnitDisplay: {fileID: 0}
-  maxSpeed: 50
-  acceleration: 0.1
+  maxSpeed: 100
+  acceleration: 0.05
 --- !u!23 &1587953436
 MeshRenderer:
   m_ObjectHideFlags: 0

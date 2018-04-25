@@ -24,6 +24,12 @@ public class ModelMove2D : MonoBehaviour {
 	public float acceleration;
 	private float step = 0f;
 
+	private float OriginalDistanceBetween = 0;
+	private float CurrentDistanceBetween = 0;
+	private float Halfway = 0;
+	private float Third = 0;
+	private bool firstTime = true;
+
 
 	// Use this for initialization
 	void Start () {
@@ -38,21 +44,56 @@ public class ModelMove2D : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+		if(firstTime && (targetPoint != transform.position))
+		{
+			OriginalDistanceBetween = Vector3.Distance(transform.position, targetPoint);
+			Halfway = OriginalDistanceBetween / 2;
+			Third = OriginalDistanceBetween / 3;
+			Debug.Log("Original: " + OriginalDistanceBetween);
+			Debug.Log("Halfway: " + Halfway);
+			firstTime = false;
+		}
+
+		CurrentDistanceBetween = Vector3.Distance(transform.position, targetPoint);
+
 		if (isSelected & move & (transform.position != targetPoint)) {
 			//transform.position = Vector3.Lerp (transform.position, targetPoint, Time.deltaTime * 2.0f); 
-
-			playerVelocity += acceleration;
-			if (playerVelocity >= maxSpeed)
+			if (CurrentDistanceBetween >= Halfway)
 			{
-				playerVelocity = maxSpeed;
+				//Debug.Log("Speeding up!");
+				playerVelocity += acceleration;
+				if (playerVelocity >= maxSpeed)
+				{
+					playerVelocity = maxSpeed;
+				}
 			}
-		    step = playerVelocity * Time.deltaTime;
+			else if((CurrentDistanceBetween < Halfway) && (CurrentDistanceBetween > Third))
+			{
+				//Debug.Log("Slowing Down!");
+				playerVelocity -= acceleration;
+				if (playerVelocity <= maxSpeed * 0.75f)
+				{
+					playerVelocity = maxSpeed * 0.75f;
+				}
+			}
+			else
+			{
+				//Debug.Log("Slowing Down!");
+				playerVelocity -= acceleration;
+				if (playerVelocity <= maxSpeed / 2)
+				{
+					playerVelocity = maxSpeed / 2;
+				}
+			}
+			step = playerVelocity * Time.deltaTime;
 			transform.position = Vector3.MoveTowards(transform.position, targetPoint, step);
 		} 
 		else if(transform.position == targetPoint)
 		{
 			playerVelocity = 0f;
 			step = 0f;
+			firstTime = true;
 		}
 		else {
 			targetPoint = transform.position;
