@@ -8,6 +8,7 @@ public class AISpawner : MonoBehaviour {
     public GameObject spawningParent;
     public float x = 50; // x size or the area to spawn the units
     public float z = 50; // z size of the area to spawn the units
+    public double prefabHeight;
     float offset;
     public int count = 100; // number of units to spawn
     float minDistance = 1.5f; // minimum proximity to one another
@@ -18,18 +19,16 @@ public class AISpawner : MonoBehaviour {
         spawningParent = GameObject.Find("Faction2");
         objectPooler = ObjectPooler.Instance;
         offset = x / 2;
-        BeginPlacing();
-      
-
     }
 	
     // BeginPlacing //
     // loops through spawning the units in a randomly generated location
-    void BeginPlacing()
+    public void BeginPlacing(double _prefabHeight)
     {
+        prefabHeight = _prefabHeight;
         for(int j = 0; j < count; j++)
         {
-            objectPooler.SpawnFromPool("AIUnit", PlaceStuffRandomly(), Quaternion.identity, spawningParent);
+            objectPooler.SpawnFromPool("AIUnit", PlaceStuffRandomly(), Quaternion.identity, gameObject);
         }
     }
 
@@ -56,7 +55,7 @@ public class AISpawner : MonoBehaviour {
             } while (Nope); // This loop will run endlessly, if you try to stuff too many things in a too small area
             newPos.x = newPos.x - offset;
             newPos.z = newPos.z - offset;
-            newPos.y = newPos.y + 1;
+            newPos.y = newPos.y + (float)prefabHeight + 1; // +1 so that they display above the mesh, will (likely) change later
             positions.Add(newPos);
            // Debug.Log(newPos);
             return newPos;
